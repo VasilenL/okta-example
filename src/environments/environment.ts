@@ -6,8 +6,8 @@
 export const environment = {
   production: false,
   oidc: {
-    clientId: '0oax4vvvkvjfwKxAX4x6',
-    issuer: 'https://dreamix123.okta.com',
+    clientId: 'clientId',
+    issuer: 'yourIssuer',
     redirectUri: 'http://localhost:4201/implicit/callback',
     scopes: ['openid', 'profile', 'email', 'okta.users.read'],
     pkce: true,
