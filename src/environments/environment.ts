@@ -3,17 +3,26 @@
 // The list of file replacements can be found in `angular.json`.
 
 
+import {LogLevel} from 'angular-auth-oidc-client';
+
 export const environment = {
   production: false,
   oidc: {
-    clientId: 'clientId',
-    issuer: 'yourIssuer',
-    redirectUri: 'http://localhost:4201/implicit/callback',
-    scopes: ['openid', 'profile', 'email', 'okta.users.read'],
-    pkce: true,
-    testing: {
-      disableHttpsCheck: 'false'
-    }
+    stsServer: 'https://dreamix.onelogin.com/oidc/2',
+    redirectUrl: 'http://localhost:4201',
+    clientId: 'bde65410-d966-0138-8ae8-0af85e5ef57b176949',
+    scope: 'openid profile email',
+    responseType: 'code',
+    triggerAuthorizationResultEvent: true,
+    postLogoutRedirectUri: `http://localhost:4201/unauthorized`,
+    startCheckSession: false,
+    silentRenew: true,
+    silentRenewUrl: `http://localhost:4201/silent-renew.html`,
+    postLoginRoute: '/home',
+    forbiddenRoute: '/forbidden',
+    unauthorizedRoute: '/unauthorized',
+    logLevel: LogLevel.Debug,
+    historyCleanupOff: true
   }
 };
 

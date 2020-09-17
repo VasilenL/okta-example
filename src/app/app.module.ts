@@ -1,34 +1,34 @@
+import {HttpClientModule} from '@angular/common/http';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-
-import {AppRoutingModule} from './app-routing.module';
+import {AuthModule, OidcConfigService} from 'angular-auth-oidc-client';
 import {AppComponent} from './app.component';
+import {routing} from './app.routes';
+import {AutoLoginComponent} from './auto-login/auto-login.component';
+import {ForbiddenComponent} from './forbidden/forbidden.component';
 import {HomeComponent} from './home/home.component';
+import {NavigationComponent} from './navigation/navigation.component';
+import {UnauthorizedComponent} from './unauthorized/unauthorized.component';
 import {environment} from '../environments/environment';
-import {Router} from '@angular/router';
-import {OKTA_CONFIG, OktaAuthModule} from '@okta/okta-angular';
 
-const oktaConfig = Object.assign({
-  onAuthRequired: ({oktaAuth, injector}) => {
-    const router = injector.get(Router);
-    router.navigate(['/login-alt']);
-  }
-}, environment.oidc);
+export function configureAuth(oidcConfigService: OidcConfigService) {
+  return () =>
+    oidcConfigService.withConfig(environment.oidc);
+}
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    OktaAuthModule
-  ],
+  imports: [BrowserModule, routing, HttpClientModule, AuthModule.forRoot()],
+  declarations: [AppComponent, ForbiddenComponent, HomeComponent, AutoLoginComponent, NavigationComponent, UnauthorizedComponent],
   providers: [
-    {provide: OKTA_CONFIG, useValue: oktaConfig}
+    OidcConfigService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: configureAuth,
+      deps: [OidcConfigService],
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

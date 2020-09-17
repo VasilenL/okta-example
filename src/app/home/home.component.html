@@ -1,5 +1,5 @@
-<p>home works!</p>
+<div>Welcome to home Route</div>
 
-<p>Hello user: {{(user | async)?.name}}</p>
-
-<button (click)="logout()">Log out!</button>
+<br />
+Is Authenticated: {{ isAuthenticated$ | async }}
+<pre>{{ userData$ | async | json }}</pre>
