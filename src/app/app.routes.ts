@@ -5,12 +5,13 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { HomeComponent } from './home/home.component';
 import { ProtectedComponent } from './protected/protected.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import {SessionGuardGuard} from './session-guard.guard';
 
 const appRoutes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home' },
     { path: 'home', component: HomeComponent },
     { path: 'autologin', component: AutoLoginComponent },
-    { path: 'forbidden', component: ForbiddenComponent, canActivate: [AuthorizationGuard] },
+    { path: 'forbidden', component: ForbiddenComponent, canActivate: [AuthorizationGuard, SessionGuardGuard] },
     { path: 'unauthorized', component: UnauthorizedComponent },
     { path: 'protected', component: ProtectedComponent },
 ];

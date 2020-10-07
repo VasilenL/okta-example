@@ -10,6 +10,7 @@ import {HomeComponent} from './home/home.component';
 import {NavigationComponent} from './navigation/navigation.component';
 import {UnauthorizedComponent} from './unauthorized/unauthorized.component';
 import {environment} from '../environments/environment';
+import {ProtectedComponent} from './protected/protected.component';
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
   return () =>
@@ -18,7 +19,7 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
 
 @NgModule({
   imports: [BrowserModule, routing, HttpClientModule, AuthModule.forRoot()],
-  declarations: [AppComponent, ForbiddenComponent, HomeComponent, AutoLoginComponent, NavigationComponent, UnauthorizedComponent],
+  declarations: [AppComponent, ProtectedComponent, ForbiddenComponent, HomeComponent, AutoLoginComponent, NavigationComponent, UnauthorizedComponent],
   providers: [
     OidcConfigService,
     {

@@ -7,16 +7,18 @@ import {LogLevel} from 'angular-auth-oidc-client';
 
 export const environment = {
   production: false,
+  BACKEND_URL: 'http://localhost:8088',
   oidc: {
-    stsServer: 'https://dreamix.onelogin.com/oidc/2',
+    stsServer: 'https://openid-connect.onelogin.com/oidc',
     redirectUrl: 'http://localhost:4201',
     clientId: 'bde65410-d966-0138-8ae8-0af85e5ef57b176949',
     scope: 'openid profile email',
     responseType: 'code',
     triggerAuthorizationResultEvent: true,
     postLogoutRedirectUri: `http://localhost:4201/unauthorized`,
-    startCheckSession: false,
+    startCheckSession: true,
     silentRenew: true,
+    sessionChecksEnabled: true,
     silentRenewUrl: `http://localhost:4201/silent-renew.html`,
     postLoginRoute: '/home',
     forbiddenRoute: '/forbidden',
