@@ -3,3 +3,7 @@
 <br />
 Is Authenticated: {{ isAuthenticated$ | async }}
 <pre>{{ userData$ | async | json }}</pre>
+
+<div>{{(items)}}</div>
+
+<button (click)="reloadItems()">Reload Items</button>

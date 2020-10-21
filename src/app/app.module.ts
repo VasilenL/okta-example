@@ -1,4 +1,4 @@
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AuthModule, OidcConfigService} from 'angular-auth-oidc-client';
@@ -11,6 +11,7 @@ import {NavigationComponent} from './navigation/navigation.component';
 import {UnauthorizedComponent} from './unauthorized/unauthorized.component';
 import {environment} from '../environments/environment';
 import {ProtectedComponent} from './protected/protected.component';
+import {HttpClientInterceptor} from './interceptors/http-client.interceptor';
 
 export function configureAuth(oidcConfigService: OidcConfigService) {
   return () =>
@@ -28,6 +29,7 @@ export function configureAuth(oidcConfigService: OidcConfigService) {
       deps: [OidcConfigService],
       multi: true,
     },
+    {provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
 })

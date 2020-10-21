@@ -9,9 +9,9 @@ export const environment = {
   production: false,
   BACKEND_URL: 'http://localhost:8088',
   oidc: {
-    stsServer: 'https://openid-connect.onelogin.com/oidc',
+    stsServer: 'https://dreamix2.onelogin.com/oidc/2',
     redirectUrl: 'http://localhost:4201',
-    clientId: 'bde65410-d966-0138-8ae8-0af85e5ef57b176949',
+    clientId: '2c3e5da0-f4e3-0138-abd4-02d209b95df3179040',
     scope: 'openid profile email',
     responseType: 'code',
     triggerAuthorizationResultEvent: true,
